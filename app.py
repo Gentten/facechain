@@ -740,14 +740,14 @@ class Trainer:
         # Check Cuda Memory
         if torch.cuda.is_available():
             device = torch.device("cuda:0")
-            required_memory_bytes = 18 * (1024 ** 3)    # 18GB
+            required_memory_bytes = 12 * (1024 ** 3)    # 12GB
             try:
                 # create 18GB tensor to check the memory if enough
                 tensor = torch.empty((required_memory_bytes // 4,), device=device)
                 print("显存足够")
                 del tensor
             except RuntimeError as e:
-                raise gr.Error("目前显存不足18GB，训练失败！")
+                raise gr.Error("目前显存不足12GB，训练失败！")
 
         # Check Instance Valid
         if instance_images is None:
